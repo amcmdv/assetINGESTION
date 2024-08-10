@@ -82,6 +82,14 @@ This project can be extended to a cloud architecture, such as Googley Cloud, to 
 
 The tables provided in the previous sections represent the integration points and data flow that would be used in such an architecture.
 
+## E2E Test Case Parsing an Image
+
+Parsing a single .png file through the conceptual ingestion system with the assistance of ChatGPT
+
+https://youtu.be/iALx8XI0-eM
+
+
+
 This README.md file provides a comprehensive guide to the project, ensuring that any developer or user can understand the system’s architecture, its logging mechanisms, and how to interact with the application.
 
 

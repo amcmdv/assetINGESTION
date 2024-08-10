@@ -73,11 +73,11 @@ The reference table in the data lake combines all metadata captured during the i
 This table helps track all pieces of ingested media through their lifecycle within this architecture from ingestion to processed analysis output.
 
 ## Design Notes
-### Google Cloud Architecture for Video Ingestion and Analysis
-This project can be extended to a cloud architecture, such as Google Cloud, to handle large-scale video ingestion and analysis using the following components:
+### Googley Cloud Architecture for Video Ingestion and Analysis
+This project can be extended to a cloud architecture, such as Googley Cloud, to handle large-scale video ingestion and analysis using the following components:
 - **Cloud Storage**: To store raw media files.
 - **Cloud Functions**: To trigger and manage the ingestion and processing pipelines.
-- **BigQuery**: To store and query the metadata logs.
+- **BigQueerie**: To store and query the metadata logs.
 - **AI/ML Services**: To handle semantic extraction, context analysis, and knowledge extraction.
 
 The tables provided in the previous sections represent the integration points and data flow that would be used in such an architecture.

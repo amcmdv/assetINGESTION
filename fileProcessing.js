@@ -1,5 +1,4 @@
 import { MediaIngestionError } from './errors';
-
 export function validateFile(file) {
     if (!file || !file.name) {
         throw new MediaIngestionError('Invalid file input');

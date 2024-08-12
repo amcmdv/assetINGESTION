@@ -33,7 +33,9 @@ The Media Ingestion and Analysis system is designed to handle various types of m
   - **Components**: Google Cloud Storage, BigQuery, or similar.
   - **Logs**: Captures metadata related to data persistence and retrieval.
 
-## Log Files and Metadata
+## Logging and Metadata
+The system generates multiple log files at various integration points. Each log file captures specific metadata associated with that stage of the media ingestion process. Below is a breakdown of the integration points and associated logs.
+
 
 | Integration Point | Component | Log Files | Metadata |
 |-------------------|-----------|-----------|----------|
@@ -53,3 +55,26 @@ The Data Lake combines metadata from all log files. Each row shows which log fil
 | Images          | Ingestion   | Image Extraction | imageLog12347      |
 | Text            | Ingestion   | Text Extraction  | textLog12348       |
 | Classified Data | Processing  | AI Models        | modelLog12349      |
+
+
+### Google Cloud Architecture for Video Ingestion and Analysis
+This project can be extended to a cloud architecture, such as Google Cloud, to handle large-scale video ingestion and analysis using the following components:
+
+### Google Cloud Architecture for Video Ingestion and Analysis
+This project can be extended to a cloud architecture, such as Google Cloud, to handle large-scale video ingestion and analysis using the following components:
+- **Cloud Storage**: To store raw media files.
+- **Cloud Functions**: To trigger and manage the ingestion and processing pipelines.
+- **BigQuery**: To store and query the metadata logs.
+- **BigQuery**: To store and query the metadata logs.
+- **AI/ML Services**: To handle semantic extraction, context analysis, and knowledge extraction.
+
+The tables provided in the previous sections represent the integration points and data flow that would be used in such an architecture.
+
+
+## E2E Test Case Parsing an Image
+
+Parsing a single .png file through the conceptual ingestion system with the assistance of ChatGPT
+
+https://youtu.be/iALx8XI0-eM
+
+

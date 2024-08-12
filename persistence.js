@@ -1,14 +1,19 @@
-import { LogPersistenceError } from './errors';
+import { MediaIngestionError, LogPersistenceError } from './errors';
 
-export function createLogEntry(fileName, entities) {
-    return `File: ${fileName}\nEntities: ${entities.join(', ')}`;
+export async function persistToDataLake(file) {
+    try {
+        // Simulate persisting to a data lake
+        console.log(`Persisting ${file.name} to data lake...`);
+    } catch (error) {
+        throw new MediaIngestionError('Failed to persist file to data lake');
+    }
 }
 
-export function logProcessingError(error, fileName, log) {
-    console.error(`Error processing file ${fileName}:`, error);
-    log.push(`Error processing file ${fileName}: ${error.message}`);
-}
-
-export function displayError(message) {
-    alert(`An error occurred: ${message}`);
+export async function persistLog(logEntry) {
+    try {
+        // Simulate persisting log to a database
+        console.log(`Persisting log entry to database:\n${logEntry}`);
+    } catch (error) {
+        throw new LogPersistenceError('Failed to persist log entry');
+    }
 }

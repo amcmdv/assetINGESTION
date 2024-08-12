@@ -7,7 +7,7 @@ The Media Ingestion and Analysis system is designed to handle various types of m
 - **Microservices**: The system is divided into multiple microservices, each responsible for handling a specific type of media:
 
   - `textEntityExtraction.js`
-  - `imageEntityExtraction.js`
+  - `imageEntityExtraction.js` (TBC)
   - `audioEntityExtraction.js`
   - `videoEntityExtraction.js`
     

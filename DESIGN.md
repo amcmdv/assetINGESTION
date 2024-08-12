@@ -17,8 +17,8 @@ The Media Ingestion and Analysis system is designed to handle various types of m
 
 ### Media Type Handling
 
-- **Text**: Extracts capitalized words as entities using regex.
-- **Images**: Utilizes TensorFlow.js for object detection in images.
+- **Text**: Extracts capitaliSed words as entities using regex.
+- **Images**: UtiliSes TensorFlow.js for object detection in images.
 - **Audio**: Leverages Google Cloud's Speech-to-Text API to transcribe audio and extract entities from the transcription.
 - **Video**: Uses Google Cloud Video Intelligence API to detect labels and entities within video files.
 
@@ -40,7 +40,7 @@ The system generates multiple log files at various integration points. Each log 
 | Integration Point | Component | Log Files | Metadata |
 |-------------------|-----------|-----------|----------|
 | Media Ingestion   | File Upload | 5 | File Name, Size, Type, Timestamp, Status |
-| Semantic Extraction | Text Extraction | 3 | Entities Recognized, Timestamp, Source Text |
+| Semantic Extraction | Text Extraction | 3 | Entities Recognised, Timestamp, Source Text |
 | Context Analysis  | Image/Object Detection | 4 | Detected Objects, Confidence Scores, Timestamp |
 | Knowledge Extraction | Video Labeling | 4 | Detected Labels, Timestamp, Video Frame Info |
 | Entity Extraction | Audio Transcription | 3 | Transcribed Text, Entities, Timestamp |

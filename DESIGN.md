@@ -17,8 +17,8 @@ The Media Ingestion and Analysis system is designed to handle various types of m
 
 ### Media Type Handling
 
-- **Text**: Extracts capitaliSed words as entities using regex.
-- **Images**: UtiliSes TensorFlow.js for object detection in images.
+- **Text**: Extracts capitalised words as entities using regex.
+- **Images**: Utilises TensorFlow.js for object detection in images.
 - **Audio**: Leverages Google Cloud's Speech-to-Text API to transcribe audio and extract entities from the transcription.
 - **Video**: Uses Google Cloud Video Intelligence API to detect labels and entities within video files.
 

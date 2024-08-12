@@ -1,65 +1,65 @@
 # assetINGESTION
 adventure-into-asset-ingestion-and-assetmanagement
 
-# Media Ingestion and Analysis
+# Media Ingestion and Analysis System Design
 
 ## Overview
-This project is a web-based application designed to ingest media files (e.g., text files), process them for entity extraction, and log detailed metadata throughout the ingestion and analysis pipeline. The system simulates the persistence of files to a data lake and logs to a database.
+The Media Ingestion and Analysis system is designed to handle various types of media files (text, images, audio, video) and extract meaningful entities from them. The system is modular and scalable, suitable for deployment in high-transaction environments like Google Cloud.
 
-## Table of Contents
-- [Installation](#installation)
-- [Usage](#usage)
-- [Architecture](#architecture)
-- [Logging and Metadata](#logging-and-metadata)
-- [Reference Table in Data Lake](#reference-table-in-data-lake)
-- [Design Notes](#design-notes)
+### Architecture
 
-## Installation
-To run this application locally:
+- **Microservices**: The system is divided into multiple microservices, each responsible for handling a specific type of media:
+  - `textEntityExtraction.js`
+  - `imageEntityExtraction.js`
+  - `audioEntityExtraction.js`
+  - `videoEntityExtraction.js`
+- **Scalability**: Each microservice can be scaled independently based on the workload.
+- **File Type Detection**: The system automatically detects the type of file and applies the appropriate extraction logic.
+- **Data Persistence**: The system logs every step of the ingestion and extraction process, and all data is stored in a data lake for further analysis.
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/media-ingestion-analysis.git
-    ```
+### Media Type Handling
 
-2. Navigate to the project directory:
-    ```bash
-    cd media-ingestion-analysis
-    ```
-
-3. Open the `index.html` file in your web browser.
-
-## Usage
-1. Open the application in your web browser.
-2. Use the “Choose File” button to select one or more text files for ingestion.
-3. Click “Ingest Media” to start the process.
-4. The processing log will display detailed information about each step of the ingestion and analysis.
-
-## Architecture
-The system is designed with a modular approach, incorporating the following components:
-- **File Ingestion**: Handles user file input, including validation and metadata logging.
-- **Entity Extraction**: Extracts capitalized words (as a simple form of entities) from the file content.
-- **Logging**: Captures detailed metadata and errors at each step of the process.
-- **Persistence Simulation**: Simulates the storage of files to a data lake and logs to a database.
+- **Text**: Extracts capitalized words as entities using regex.
+- **Images**: Utilizes TensorFlow.js for object detection in images.
+- **Audio**: Leverages Google Cloud's Speech-to-Text API to transcribe audio and extract entities from the transcription.
+- **Video**: Uses Google Cloud Video Intelligence API to detect labels and entities within video files.
 
 ## Logging and Metadata
 The system generates multiple log files at various integration points. Each log file captures specific metadata associated with that stage of the media ingestion process. Below is a detailed breakdown of the integration points and associated logs.
 
-### Integration Points and Log Files
+### Integration Points
 
-| Integration Point | Component                     | Log Files | Log File Names                                                                 | Metadata Captured                                      |
-|-------------------|-------------------------------|-----------|--------------------------------------------------------------------------------|--------------------------------------------------------|
-| 1                 | Media Ingestion               | 5         | logFileReceipt, logUploadDetails, logValidationStatus, logErrorDetails, logSuccessStatus | File size, Timestamp, Format, Upload duration, Validation status |
-| 2                 | Semantic Extraction           | 3         | logEntityExtractionStart, logEntityExtractionEnd, logEntityDetails             | Timestamp, Entities Recognized, Entity count, Extraction duration |
-| 3                 | Context Analysis              | 4         | logContextStart, logContextEnd, logContextResults, logContextErrors             | Contextual Data, Timestamp, Analysis duration, Error details |
-| 4                 | Knowledge Extraction          | 4         | logKnowledgeExtractionStart, logKnowledgeExtractionEnd, logKnowledgeDetails, logKnowledgeErrors | Extracted Knowledge, Timestamp, Processing duration, Error details |
-| 5                 | Entity Extraction             | 3         | logEntityRecognitionStart, logEntityRecognitionEnd, logEntityRecognitionDetails | Entities, Timestamp, Recognition duration, Error details |
-| 6                 | AI/ML Models                  | 6         | logModelStart, logModelEnd, logModelDetails, logModelAccuracy, logModelErrors, logModelResults | Model Outputs, Accuracy, Timestamp, Processing duration, Error details |
-| 7                 | Data Pre-processing and Cleansing | 4     | logDataCleaningStart, logDataCleaningEnd, logDataCleaningDetails, logDataCleaningErrors | Cleaned Data, Timestamp, Processing duration, Error details |
-| 8                 | Data Classification/Relationship/Relevance | 5 | logClassificationStart, logClassificationEnd, logClassificationDetails, logClassificationRelationships, logClassificationErrors | Classified Data, Relationships, Timestamp, Classification duration, Error details |
-| 9                 | Processed Analysis            | 4         | logAnalysisStart, logAnalysisEnd, logAnalysisResults, logAnalysisErrors         | Analysis Results, Timestamp, Analysis duration, Error details |
+- **Media Ingestion**
+  - **Description**: Upload and process media files.
+  - **Components**: Media file validation, type detection, and content extraction.
+  - **Logs**: Captures metadata such as file type, size, ingestion time, and detected entities.
+- **Data Lake**
+  - **Description**: Stores ingested media and extracted entities.
+  - **Components**: Google Cloud Storage, BigQuery, or similar.
+  - **Logs**: Captures metadata related to data persistence and retrieval.
 
-## Reference Table in Data Lake
+## Log Files and Metadata
+
+| Integration Point | Component | Log Files | Metadata |
+|-------------------|-----------|-----------|----------|
+| Media Ingestion   | File Upload | 5 | File Name, Size, Type, Timestamp, Status |
+| Semantic Extraction | Text Extraction | 3 | Entities Recognized, Timestamp, Source Text |
+| Context Analysis  | Image/Object Detection | 4 | Detected Objects, Confidence Scores, Timestamp |
+| Knowledge Extraction | Video Labeling | 4 | Detected Labels, Timestamp, Video Frame Info |
+| Entity Extraction | Audio Transcription | 3 | Transcribed Text, Entities, Timestamp |
+
+### Reference Table in Data Lake
+The Data Lake combines metadata from all log files. Each row shows which log file the metadata was parsed from.
+
+| Data Type       | Source      | Processed By     | Log File Reference |
+|-----------------|-------------|------------------|--------------------|
+| Video           | Ingestion   | Video Extraction | videoLog12345      |
+| Audio           | Ingestion   | Audio Extraction | audioLog12346      |
+| Images          | Ingestion   | Image Extraction | imageLog12347      |
+| Text            | Ingestion   | Text Extraction  | textLog12348       |
+| Classified Data | Processing  | AI Models        | modelLog12349      |
+
+## Reference Table in Data Lake (TBC)
 The reference table in the data lake combines all metadata captured during the ingestion and analysis pipeline. Each row in the table includes a reference to the log file from which the metadata was parsed.
 
 | Data Type        | Source Component | Processed By Component | Log File Reference                                      |

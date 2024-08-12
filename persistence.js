@@ -1,5 +1,4 @@
 import { MediaIngestionError, LogPersistenceError } from './errors';
-
 export async function persistToDataLake(file) {
     try {
         // Simulate persisting to a data lake
@@ -8,7 +7,6 @@ export async function persistToDataLake(file) {
         throw new MediaIngestionError('Failed to persist file to data lake');
     }
 }
-
 export async function persistLog(logEntry) {
     try {
         // Simulate persisting log to a database

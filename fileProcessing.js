@@ -1,4 +1,3 @@
-
 import { MediaIngestionError } from './errors';
 
 export function validateFile(file) {

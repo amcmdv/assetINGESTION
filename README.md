@@ -13,7 +13,7 @@ This project provides a scalable system for ingesting and analysing various type
 ## Architecture
 - **Media Ingestion**: Handles file upload, validation, and type detection.
 - **Entity Extraction**: Extracts meaningful entities from the media using dedicated microservices.
-  - Text: Extracts capitalized words as entities.
+  - Text: Extracts capitalised words as entities.
   - Images: Uses object detection models.
   - Audio: Transcribes and extracts entities from audio files.
   - Video: Detects labels and entities in video content.

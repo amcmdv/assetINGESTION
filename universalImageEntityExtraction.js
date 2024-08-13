@@ -1,4 +1,3 @@
-// Image entity extraction
 import vision from '@google-cloud/vision';
 
 // Initialise the Vision client for image processing

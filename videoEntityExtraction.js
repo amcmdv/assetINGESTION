@@ -5,13 +5,29 @@ export async function extractVideoEntities(videoBuffer) {
 
     const request = {
         inputContent: videoBuffer.toString('base64'),
-        features: ['LABEL_DETECTION'],
+        features: ['LABEL_DETECTION', 'SHOT_CHANGE_DETECTION', 'EXPLICIT_CONTENT_DETECTION'],
     };
 
     const [operation] = await client.annotateVideo(request);
     const [response] = await operation.promise();
 
-    const annotations = response.annotationResults[0].segmentLabelAnnotations;
+    const segmentAnnotations = response.annotationResults[0].segmentLabelAnnotations;
+    const shotAnnotations = response.annotationResults[0].shotAnnotations;
+    const explicitAnnotation = response.annotationResults[0].explicitAnnotation;
 
-    return annotations.map(annotation => annotation.entity.description);
+    // Combine all relevant annotations into a single array
+    const allAnnotations = segmentAnnotations.concat(shotAnnotations, explicitAnnotation || []);
+
+    // Extract relevant information and format as JSON
+    const formattedAnnotations = allAnnotations.map(annotation => {
+        const { description, confidence, startTimeOffset, endTimeOffset } = annotation.entity;
+        return {
+            description,
+            confidence: confidence || 0, // Set default confidence value if not provided
+            startTime: startTimeOffset ? startTimeOffset.seconds : null,
+            endTime: endTimeOffset ? endTimeOffset.seconds : null,
+        };
+    });
+
+    return formattedAnnotations;
 }

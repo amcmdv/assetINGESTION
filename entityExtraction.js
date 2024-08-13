@@ -1,5 +1,5 @@
 import { extractTextEntities } from './textEntityExtraction';
-import { extractImageEntities } from './imageEntityExtraction';
+import { extractImageEntities } from './universalImageEntityExtraction';
 import { extractAudioEntities } from './audioEntityExtraction';
 import { extractVideoEntities } from './videoEntityExtraction';
 
